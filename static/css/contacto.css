@@ -1,0 +1,75 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
+h2{
+    text-align: center;
+    margin: 10px 5px;
+}
+form{
+    padding: 20px;
+    margin: auto;
+    width: 350px;
+    height: 560px;
+    border-radius: 5%;
+    background: #2948ff;
+}
+form>p{
+    padding: 0;
+    margin: 3px 0;
+}
+form label{
+    display: block;
+    width: 100%;
+}
+form > input{
+    border: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    margin: 10px 0  10px 0;
+    height: 25px;
+    width: 100%;
+    background: none;
+    outline-style: none;
+}
+textarea{
+    margin: 10px 7%  10px 7%;
+    width: 85%;
+    height: 250px;
+    border: none;
+    outline-style: none;
+}
+button{
+    cursor: pointer;
+    float: right;
+    width: 100px;
+    height: 40px;
+    border: none;
+    outline-style: none;
+    border-radius: 20px;
+    background: #c3c3c3;
+}
+/* registros */
+.form_registro{
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(180deg, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(180deg, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                
+}
+.form_registro>form{
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(0deg, #1CB5E0 9%, #000046 45%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(0deg, #1CB5E0 9%, #000046 45%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.btn_send{
+    background: #fff;
+}
+.res{
+    margin-top: 45px;
+    word-break: break-all;
+}

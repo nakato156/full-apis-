@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Apis</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css') }}">
+</head>
+<body>
+    <nav id="nav">
+        <div class="enlaces">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a id="scroll_apis" href="#apis">Apis</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="https://github.com/nakato156">Github<i class='bx bxl-github'></i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section style="margin-top: 80px;" class="intro">
+        <h1 style="font-size: 36px;">Full Apis</h1>
+        <p>Todas mis apis creadas</p>
+        <div class="lenguajes">
+            <i style="color: #4fdf4a;" class='bx bxl-nodejs'></i>
+            <i class='bx bxl-python' ></i>
+            <i style="color: #7540a7;" class="fab fa-php"></i>
+        </div>
+    </section>
+    <section class="info">
+        <div>
+            <p>En este sitio he recopilado todas las Apis que he creado hasta ahora con diferentes lenguajes de programaci&oacute;n, adem&aacute;s podr&aacute;s usarlas gratuitamente llenando un registro y ver el codigo fuente en Github.</p>
+            <p>Estas Apis estan alojas en la nube, no se garantiza gran eficiencia en grandes proyectos</p>
+            <a href="https://github.com/nakato156"><button class="extLink">Github&nbsp;<i class='bx bxl-github'></i></button></a>
+        </div>
+    </section>
+    <section class="apis">
+        <div class="api">
+            <button><a href="/productos">Productos</a></button>
+        </div>
+        <div class="api">
+            <button><a href="/notificaciones">Notificaciones</a></button>
+        </div>
+        <div class="api">
+            <button><a href="/chat">Chat</a></button>
+        </div>
+        <div class="api">
+            <button><a href="/jwt">Generar JWT</a></button>
+        </div>
+    </section>
+    <section class="use">
+        <div>
+            <p>Para usar cualquier api disponible en esta pagina deber&aacute; registrarse gratis.</p><p>Todas las apis estar&aacute;n disponible solo por 8 horas, para usarlas debe de hacer uso del Token y el Url_Token proporcionado al momento de registrate, luego se reginstringir&aacute; su acceso.</p>
+            <a href="/user_api"><button class="extLink">Registrate&nbsp;<i class='bx bx-log-in'></i></button></a>
+        </div>
+    </section>
+    <footer>
+        <div>
+            <p>Espero que te halla gustado y/o hallas aprendido algo nuevo</p>
+            <div class="enlaces-Rs">
+                <ul class="redes">
+                    <p>Redes Sociales</p>
+                    <li><a href="https://instagram.com/deveco.de"><i class='bx bxl-instagram' ></i></a></li>
+                    <li><a href="https://github.com/nakato156"><i class='bx bxl-github'></i></a></li>
+                </ul>
+                <ul class="redes">
+                    <p>Contacto</p>
+                    <li><a href="/contacto">formulario de contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="{{url_for('static',filename='js/index.js') }}"></script>
+</html>

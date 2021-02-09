@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
+body{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.intro{
+    text-align: center;
+}
+.intro>div>h1{
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 32px;
+    margin: 60px;
+}
+.adicional_info{
+    font-size: 17px;
+    padding: 30px;
+    background: #c3c3c3;
+}
+.implementacion{
+    padding: 30px 40px;
+}
+.implementacion>p{
+    font-size: 18.5px;
+    margin-left: 4px;
+}

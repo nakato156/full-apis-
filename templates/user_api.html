@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/contacto.css') }}">
+</head>
+<body background="transparent">
+    <section style="padding: 40px;" class="form_registro">
+        <form id="form">
+                <h2>Usa las Apis disponibles</h2>
+                <label>Nombre *</label>
+                <input type="text" id="name" placeholder="Nombre">
+                <label>Correo electronico *</label>
+                <input type="email" id="email" placeholder="Email @">
+                <label>Contraseña *</label>
+                <input type="password" id="pwd">
+                <button class="btn_send">Enviar</button>
+                <div class="res" id="res"></div>
+        </form>
+    </section>
+</body>
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener('submit',function(e){
+        e.preventDefault();
+        let name = form.name.value
+        let email = form.email.value
+        let password = form.pwd.value
+        const datos = JSON.stringify({name,email,password});
+        fetch('/new_user_api',{
+            method: 'post',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: datos
+        })
+        .then(res=>res.status == 200 ? res.json() : alert('algo salio mal'))
+        .then(datos=>{
+            alert(datos.status)
+            let token = datos.token
+            let url_token = datos.url_token
+            let cnt_res=document.getElementById('res')
+            let temp=`<class="token" style="color:#fff;">Token: ${token}</class=>
+                <p class="url_token" style="color:#fff;">Url_Token: ${url_token}</p>  
+            `
+            cnt_res.innerHTML = temp
+        })
+    });
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactame</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/contacto.css') }}">
+</head>
+<body>
+    <section style="padding: 40px;" class="form_contact">
+        <form id="form">
+                <h2>Te quieres poner en contacto conmigo?</h2>
+                <label>Nombre *</label>
+                <input type="text" id="name" placeholder="Nombre">
+                <label>Correo electronico *</label>
+                <input type="email" id="email" placeholder="Email @">
+                <p style="font-size: 18px;">Informaci&oacute; adicional</p>
+                <label>¿como me conociste?</label>
+                <textarea id="adicional" cols="30" rows="10" placeholder="¿Como me conociste?"></textarea>
+                <button>Enviar</button>
+        </form>
+    </section>
+</body>
+<script src="{{url_for('static',filename='js/index.js')}}"></script>
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener('submit',function(e){
+        e.preventDefault();
+        let name = form.name.value
+        let email = form.email.value
+        let info = form.adicional.value
+        const datos = JSON.stringify({name,email,info});
+        fetch('/new_contacto',{
+            method: 'post',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: datos
+        })
+        .then(res=>res.status == 200 ? res.json() : alert('algo salio mal'))
+        .then(datos=>alert(datos.response.status))
+    });
+</script>
+</html>

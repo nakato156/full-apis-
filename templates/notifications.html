@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification APi</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/apis.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/prism.css')}}">
+</head>
+<body>
+    <section class="intro">
+        <div>
+            <h1>Notification Api</h1>
+            <p>Bienvenid@ a la api de notificaciones, explora  y diviertete enviando notificaciones</p>
+        </div>
+    </section>
+    <section class="adicional_info">
+        <p>Version N-1.0</p>
+        <p>El servidor de notificaciones hace uso de la Api push-notification</p>
+        <p>Para hacer uso de esta Api primero se debe subscribir al usuario para obtener un Endpoitn al cual se enviara la solicitud push, la configuracion de los endpoints son determinados por la api, la cual tiene la configuracion por defecto.</p><br> 
+    </section>
+    <section class="implementacion">        
+        <p>Para poder escuchar el evento que nos estara enviando el servidor necesitamos un <b>Service Worker</b> que se este ejecutando en segundo plano y est&eacute; a la escucha del evento Push del servidor</p>
+        <p>Creamos un archivos llamado <b>sw.js</b> y ponemos el siguiente codigo</p>
+        <pre>
+            <code class="lang-javascript" style="white-space:pre-wrap;">
+                console.log('service worker active'); //comprobamos que se registro
+                self.addEventListener('push', e=>{
+                    const data = e.data.json()
+                    self.registration.showNotification(data.title,{
+                        body: data.message,
+                        icon: 'url_de_tu_icono' //puede ser una imagen que tengas en tu proyect o una url de la imagen
+                    })
+                })
+                //con esto ya podemos mostrar la notificacion al cliente
+            </code>
+        </pre>
+
+        <p>Tenemos que registrar este archivo como <b>Service Worker</b> en el navegador, por eso ahora debemos de crear un archivo <b>Javascript</b> el cual se encarge de enviar los datos y subscribirnos al servidor</p>
+        <pre>
+            <code class="lang-javascript" style="white-space:pre-wrap;">
+                //creamos una funcion Asincrona que se encarge de todo el registro del Service Worker y enviar el endpoint
+                const subscription = async () => {
+                    // subscribe el Service Worker
+                    const registro = await navigator.serviceWorker.register("ruta_al_archivo/sw.js"); //La ruta puede ser dominio.com/ruta_al_archivo/sw.js o http://localhost/proyecto/ruta/sw.js
+                    console.log("service worker registrado")                  
+                }
+            </code>
+        </pre>
+
+        <p>El servidor hace uso de <b>LLAVES P&Uacute;BLICAS y PRIVADAS</b> por lo que debemos de tener la llave publica. esto debe ir en nuestro archivo Javascript que creamos y fuera de la funcion <i>subscription</i></p>
+        <pre rel="JS"> 
+            <code class="language-javascript" style="white-space:pre-wrap;">
+                //LLave publica
+                const PUBLIC_VAPID_KEY = 'BJKaDByF8QAYVNxwSdEbJYpCZgZZrvmq7pf2WvJyy-TYib32_Y5L9FmtTQ5481NAZwoXImNTn57N6LLSkdhP8J4';
+            </code>
+        </pre>
+        <p>La llave P&uacute;blica debe de ser convertida a un formato <b>Unit8Array</b>, para la cual se utiliza la siguiente funcion</p>
+        <pre>
+            <code class="language-javascript" style="white-space:pre-wrap;">
+                function urlBase64ToUint8Array(base64String) {
+                    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+                    const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+                  
+                    const rawData = window.atob(base64);
+                    const outputArray = new Uint8Array(rawData.length);
+                  
+                    for (let i = 0; i < rawData.length; ++i) {
+                      outputArray[i] = rawData.charCodeAt(i);
+                    }
+                    return outputArray;
+                  }
+            </code>
+        </pre>
+        <p>Luego de haber hecho el registro del <b>Service Worker</b> tenemos que subscribir al usuario (dentro de la funcion <i>subscription</i>)</p>
+        <pre>
+            <code class="lang-javascript" style="white-space:pre-wrap;">
+                //evento de la funcion 'registro'
+                const encode_subscription = await registro.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
+                });
+            </code>
+        </pre>
+        <p>Quedando, hasta ahora, la funcion as&iacute;</p>
+        <pre>
+            <code class="language-javascript" style="white-space:pre-wrap;">
+                const subscription = async () => {
+                    // subscribe el Service Worker
+                    const registro = await navigator.serviceWorker.register("ruta_al_archivo/sw.js");
+                    console.log("service worker registrado")
+
+                    const encode_subscription = await registro.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
+                    });
+                }
+            </code>
+        </pre>
+        <p>Luego de codificar la llave privada hacemos la peticion <b>POST</b> al servidor. En este caso usaremos la Api Fecth nativa de Javscript</p>
+        <pre>
+            <code class="language-javascript" style="white-space:pre-wrap;">
+                const subscription = async () => {
+                    ...
+                    await fetch("https://server-notif.herokuapp.com/subs", {
+                        method: "POST",
+                        body: JSON.stringify(encode_subscription),
+                        headers: {
+                        "Content-Type": "application/json"
+                        }
+                    });
+                }
+            </code>
+        </pre>
+        <p>Finalmente solo nos queda llamar a la funcion</p>
+        <pre>
+            <code class="lang-javascript">
+                subscription();
+            </code>
+        </pre>
+    </section>
+</body>
+<script src="{{url_for('static',filename='js/prism.js')}}"></script>
+</html>

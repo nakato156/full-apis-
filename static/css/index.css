@@ -1,0 +1,116 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+button{
+    cursor: pointer;
+}
+nav{
+    top: 0;
+    background: #fff;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+    overflow: hidden;
+}
+.enlaces ul, .enlaces-Rs ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.enlaces ul li{
+    background: #fff;
+    display: inline-block;
+}
+.enlaces ul li a, .enlaces-Rs ul li a{
+    text-align: center;
+    font-size: 18px;
+    padding: 12px;
+    height: 25px;
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+.enlaces ul li a:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.extLink{
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    border:none;
+    outline-style: none;
+}
+.extLink>.bx{
+    font-size: 20px;
+}
+.intro{
+    text-align: center;
+    min-height: 150px;
+}
+.lenguajes i{
+    font-size: 80px;
+}
+.bxl-python{
+    background: linear-gradient(142deg, #2f61eb 44%, #fcf964 53% ,#fffb00 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.info, .use{
+    padding: 20px;
+    background: #c3c3c3;
+}
+.apis, .enlaces-Rs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px 70px 20px 70px;
+}
+.api{
+    margin: 7px;
+    height: 50px;
+    width: 24%;
+}
+.api button{
+    background-color: #323ff1;
+    border: none;
+    outline-style: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+.api a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+}
+footer{
+    padding: 15px;
+    background: #363535;
+    color: #f2f2f2;
+    bottom: 0;
+}
+.redes>p{
+    text-align: center;
+    border-bottom: 1px solid #323ff1;
+}
+.enlaces-Rs ul li a{
+    font-size: 20px;
+    padding: 10px;
+    height: 20px;
+    color: #fff;
+}
+.enlaces-Rs>ul .bx{
+    font-size: 40px;
+}
+.enlaces-Rs .bxl-github:hover{
+    color: #000;
+}
+.enlaces-Rs .bxl-instagram:hover{
+    background: linear-gradient(15deg, #fffb00, #e4b92d 50% ,#e48227 70% , #8229e9 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
